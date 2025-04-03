@@ -12,7 +12,7 @@ from collections import Counter
 app = Flask(__name__, template_folder="templates")
 
 # Load the transformer model
-transformer = SentenceTransformer("bert-base-multilingual-cased")
+transformer = SentenceTransformer("paraphrase-MiniLM-L6-v2")
 
 # Class Labels
 class_labels = {
@@ -89,4 +89,6 @@ def mlp():
     return render_template('mlp.html', user_comment="", prediction_text="")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Get the assigned port from Render
+    app.run(host="0.0.0.0", port=port, debug=True)
