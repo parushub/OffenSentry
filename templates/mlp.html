@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERT with MLP</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #B7CEEC;
+            padding-top: 50px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 500px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            resize: none;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #413839;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .home-button {
+            background-color: #28a745; /* Green color for home button */
+        }
+
+        .home-button:hover {
+            background-color: #218838;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 22px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>BERT with MLP</h2>
+    <div class="container">
+        <form action="/mlp" method="post">
+            <textarea id="commentBox" name="comment" placeholder="Enter your comment..." required>{{ user_comment }}</textarea>
+            <br>
+            <div class="button-container">
+                <button class="button" type="submit" onclick="setFocus()">Analyze</button>
+                <button class="button" type="button" onclick="clearText()">All Clear</button>
+                <button class="button home-button" type="button" onclick="goHome()">Back to Home</button>
+            </div>
+        </form>
+        <h3 id="resultText">{{ prediction_text }}</h3>
+    </div>
+
+    <script>
+        function clearText() {
+            document.getElementById("commentBox").value = "";
+            document.getElementById("resultText").innerHTML = "";
+            document.getElementById("commentBox").focus();
+        }
+
+        function setFocus() {
+            setTimeout(() => {
+                document.getElementById("commentBox").focus();
+            }, 100);
+        }
+
+        function goHome() {
+            window.location.href = "/"; // Redirect to home page
+        }
+    </script>
+</body>
+</html>
